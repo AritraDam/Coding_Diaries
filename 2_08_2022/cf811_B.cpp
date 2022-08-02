@@ -1,48 +1,34 @@
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long int ll;
 int main(){
     int t;
     cin>>t;
-    for(;t--;){
-    int s;
-    cin>>s;
-    int rangeFound=1;
-    int right =9;
-    int left = 1;
-    int range = 1;
-   ll ans;
-    int i=8;
-    while(rangeFound==1){
-        if(s>=left && s<=right)
-        {
-            if(range==1)
-            ans=s;
-            else{
-            ans = (s-(left-1))*pow(10,range-1);
-            int start = 9-(range-2);
-            int op = range -2;
-            // cout<<start<<" "<<op<<endl;
-            for(int j=1;j<range;j++)
+    while(t--){
+        int n;
+        cin>>n;
+        vector<int> v;
+        int w;
+        int flag =-1;
+        vector<int> arr(n,0);
+        for(int i=0;i<n;i++){
+            cin>>w;
+            v.push_back(w);
+        }
+        for(int i=n-1;i>=0;i--){
+            if(arr[v[i]-1]>0)
             {
-                ans+=(start*pow(10,op));
-                start++;
-                op--;
+                flag =i;
+                break;
             }
-            
-            }
-            rangeFound=0;
+            else
+            arr[v[i]-1]++;
         }
-        else{
-            range++;
-            left= right+1;
-            right+=i;
-            i--;
-            // cout<<"here"<<range<<" "<<left<<" "<<right<<" "<<endl;
-        }
-    }
-    cout<<ans<<endl;
+        if(flag==-1)
+        cout<<0<<endl;
+        else
+        cout<<flag+1<<endl;
+        // for(auto &i:arr)
+        // cout<<i<<" ";
     }
     return 0;
-
 }
